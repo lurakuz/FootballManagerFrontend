@@ -1,0 +1,44 @@
+<app-nav-bar></app-nav-bar>
+<div class="list-container container">
+<div style="text-align: center;margin: 20px;"><h2>Players</h2></div>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Age</th>
+            <th>Career Start Date</th>
+            <th>Team Name</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor = "let player of playersMap | keyvalue | paginate
+        : {
+            itemsPerPage: pageSize,
+            currentPage: page,
+            totalItems: count
+          };
+    let i = index">
+            <td>{{player.key.firstName}}</td>
+            <td>{{player.key.lastName}}</td>
+            <td>{{player.key.age}}</td>
+            <td>{{player.key.careerStartDate}}</td>
+            <td>{{player.value.teamName}}</td>
+            <td>
+                <button (click) = "updatePlayer(player.key.id)" class="btn btn-info">Update</button>
+                <button (click) = "deletePlayer(player.key.id)" class="btn btn-danger" style="margin-left: 10px">Delete</button>
+                <button (click) = "playerDetails(player.key.id)" class="btn btn-info" style="margin-left: 10px">View</button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<div class="d-flex justify-content-center">
+    <pagination-controls
+      previousLabel="Prev"
+      nextLabel="Next"
+      (pageChange)="onTableDataChange($event)"
+    >
+    </pagination-controls>
+  </div>
+</div>

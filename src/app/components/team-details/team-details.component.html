@@ -1,0 +1,62 @@
+<app-nav-bar></app-nav-bar>
+<div class='list-container container'>
+<div style="text-align: center;margin: 20px;"><h3>View Team's Details</h3></div>
+<div>
+    <div>
+        <label> <b>Team name: </b></label> {{team.teamName}}
+    </div>
+    <div>
+        <label> <b>Country: </b></label> {{team.country}}
+    </div>
+    <div>
+        <label> <b>City: </b></label> {{team.city}}
+    </div>
+    <div>
+        <label> <b>Transfer commission: </b></label> {{team.transferCommission}}%
+    </div>
+    <div>
+        <label> <b>AccountAmount: </b></label> {{team.accountAmount}}$
+    </div>
+</div>
+    <div style="text-align: center;margin: 20px;"><h2>Players</h2></div>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Age</th>
+                <th>Career Start Date</th>
+                <th>Team Name</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor = "let player of players | paginate
+            : {
+                itemsPerPage: pageSize,
+                currentPage: page,
+                totalItems: count
+              };
+        let i = index">
+                <td>{{player.firstName}}</td>
+                <td>{{player.lastName}}</td>
+                <td>{{player.age}}</td>
+                <td>{{player.careerStartDate}}</td>
+                <td>{{team.teamName}}</td>
+                <td>
+                    <button (click) = "updatePlayer(player.id)" class="btn btn-info">Update</button>
+                    <button (click) = "deletePlayer(player.id)" class="btn btn-danger" style="margin-left: 10px">Delete</button>
+                    <button (click) = "playerDetails(player.id)" class="btn btn-info" style="margin-left: 10px">View</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="d-flex justify-content-center">
+        <pagination-controls
+          previousLabel="Prev"
+          nextLabel="Next"
+          (pageChange)="onTableDataChange($event)"
+        >
+        </pagination-controls>
+      </div>
+</div>

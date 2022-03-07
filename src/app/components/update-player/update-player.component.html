@@ -1,0 +1,44 @@
+<app-nav-bar></app-nav-bar>
+<div class="col-md-6 offset-md-3 list-container container">
+    <div style="text-align: center;margin: 20px;"><h3>Update Player</h3></div>
+    <form (ngSubmit) = "onSubmit()">
+    
+        <div class="form-group">
+            <label>First Name</label>
+            <input type="text" class="form-control" id = "firstName"
+                [(ngModel)] = "player.firstName" name = "firstName">
+        </div>
+    
+        <div class="form-group">
+            <label>Last Name</label>
+            <input type="text" class="form-control" id = "lastName"
+                [(ngModel)] = "player.lastName" name = "lastName">
+        </div>
+    
+        <div class="form-group">
+            <label>Age</label>
+            <input type="text" class="form-control" id = "age"
+                [(ngModel)] = "player.age" name = "age">
+        </div>
+
+        <div class="form-group">
+            <label>Career Start Date</label>
+            <input type="text" class="form-control" id = "age"
+                [(ngModel)] = "player.careerStartDate" name = "age">
+        </div>
+
+        <div class="form-group">
+            <label>Transfer player to new Team</label>
+            <select class="form-control" id = "newTeam" [(ngModel)] = "newTeam" name = "newTeam" (change)="changeTransfer()">
+                <option value="">Select New Team</option>
+                <option [ngValue]="team" *ngFor="let team of teamList">{{team.teamName}}</option>
+            </select>
+        </div>
+
+        <div class="form-group" *ngIf="transferAmount>0">
+            <label>TransferAmount: {{transferAmount}}$</label>
+        </div>
+    
+        <button class="btn btn-success" style="margin-top: 10px;" type="submit">Submit</button>
+    </form>
+</div>

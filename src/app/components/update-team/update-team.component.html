@@ -1,0 +1,38 @@
+<app-nav-bar></app-nav-bar>
+<div class="col-md-6 offset-md-3 list-container container">
+    <div style="text-align: center;margin: 20px;"><h3>Update Team</h3></div>
+    <form (ngSubmit) = "onSubmit()">
+    
+        <div class="form-group">
+            <label>Team Name</label>
+            <input type="text" class="form-control" id = "teamName"
+                [(ngModel)] = "team.teamName" name = "teamName">
+        </div>
+    
+        <div class="form-group">
+            <label>Country</label>
+            <input type="text" class="form-control" id = "country"
+                [(ngModel)] = "team.country" name = "country">
+        </div>
+    
+        <div class="form-group">
+            <label>City</label>
+            <input type="text" class="form-control" id = "city"
+                [(ngModel)] = "team.city" name = "city">
+        </div>
+
+        <div class="form-group">
+            <label>Transfer commission</label>
+            <input type="text" class="form-control" id = "transferCommission"
+                [(ngModel)] = "team.transferCommission" name = "transferCommission">
+        </div>
+
+        <div class="form-group">
+            <label>AccountAmount</label>
+            <input type="text" class="form-control" id = "accountAmount"
+                [(ngModel)] = "team.accountAmount" name = "accountAmount">
+        </div>
+    
+        <button class="btn btn-success" style="margin-top: 10px;" type="submit">Submit</button>
+    </form>
+</div>

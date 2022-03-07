@@ -1,0 +1,43 @@
+<app-nav-bar></app-nav-bar>
+<div class="list-container container">
+<div style="text-align: center;margin: 20px;"><h2>Teams</h2></div>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Team Name</th>
+            <th>Country</th>
+            <th>City</th>
+            <th>Transfer commission</th>
+            <th>AccountAmount</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor = "let team of teams | paginate
+        : {
+            itemsPerPage: pageSize,
+            currentPage: page,
+            totalItems: count
+          };
+    let i = index">
+            <td>{{team.teamName}}</td>
+            <td>{{team.country}}</td>
+            <td>{{team.city}}</td>
+            <td>{{team.transferCommission}}%</td>
+            <td>{{team.accountAmount}}$</td>
+            <td>
+                <button (click) = "updateTeam(team.id)" class="btn btn-info">Update</button>
+                <button (click) = "deleteTeam(team.id)" class="btn btn-danger" style="margin-left: 10px">Delete</button>
+                <button (click) = "teamDetails(team.id)" class="btn btn-info" style="margin-left: 10px">View</button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<div class="d-flex justify-content-center">
+    <pagination-controls
+      previousLabel="Prev"
+      nextLabel="Next"
+      (pageChange)="onTableDataChange($event)"
+    >
+    </pagination-controls>
+  </div>
+</div>
