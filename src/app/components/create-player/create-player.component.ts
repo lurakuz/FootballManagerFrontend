@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { PlayerDto } from 'src/app/models/player.model';
+import { TeamDto } from 'src/app/models/team.model';
 import { PlayerService } from 'src/app/services/player.service';
+import { TeamService } from 'src/app/services/team.service';
 
 @Component({
   selector: 'app-create-player',
@@ -11,10 +13,16 @@ import { PlayerService } from 'src/app/services/player.service';
 export class CreatePlayerComponent implements OnInit {
 
   player: PlayerDto = new PlayerDto();
+  teamList: TeamDto[] = [];
+
   constructor(private playerService: PlayerService,
+    private teamService: TeamService,
     private router: Router) { }
 
   ngOnInit(): void {
+    this.teamService.getTeamsList().subscribe(data => {
+      this.teamList = data;
+    })
   }
 
   savePlayer(){

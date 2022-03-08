@@ -15,7 +15,8 @@
         <label> <b>Career Start Date: </b></label> {{player.careerStartDate}}
     </div>
     <div>
-        <label> <b>Current Team: </b></label> {{teamName}}
+        <label style="display: flex;"> <b>Current Team: </b></label><a [routerLink]="['../../team-details/', player.teamId]" routerLinkActive="active"
+        style="margin-left: 10px" >{{teamName}}</a>
     </div>
 </div>
 </div>

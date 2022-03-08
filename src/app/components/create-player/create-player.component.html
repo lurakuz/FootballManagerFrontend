@@ -26,7 +26,13 @@
             <input type="text" class="form-control" id = "careerStartDate"
                 [(ngModel)] = "player.careerStartDate" name = "careerStartDate">
         </div>
-    
-        <button class="btn btn-success" type="submit">Submit</button>
+        
+        <div class="form-group">
+            <label style="margin-top: 10px;">Team</label>
+            <select style="margin-top: 10px;" class="team-option" id = "newTeam"  name = "newTeam" [ngModel]="player.teamId">
+                <option [ngValue]="team" *ngFor="let team of teamList" >{{team.teamName}}</option>
+            </select>
+        </div>
+        <button style="margin-top: 10px;" class="btn btn-success" type="submit">Submit</button>
     </form>
     </div>
