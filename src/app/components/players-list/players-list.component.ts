@@ -91,7 +91,7 @@ export class PlayersListComponent implements OnInit {
     this.teamService.getTeamById.name
   }
 
-  createPlayer (){
+  createPlayer(){
     this.router.navigate(['create-player']);
   }
 

@@ -29,7 +29,7 @@
         
         <div class="form-group">
             <label style="margin-top: 10px;">Team</label>
-            <select style="margin-top: 10px;" class="team-option" id = "newTeam"  name = "newTeam" [ngModel]="player.teamId">
+            <select style="margin-top: 10px;" class="team-option" id = "selectedTeam"  name = "selectedTeam" [ngModel]="selectedTeam">
                 <option [ngValue]="team" *ngFor="let team of teamList" >{{team.teamName}}</option>
             </select>
         </div>

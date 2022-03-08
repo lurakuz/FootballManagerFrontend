@@ -71,4 +71,7 @@ export class TeamsListComponent implements OnInit {
     })
   }
 
+  createTeam(){
+    this.router.navigate(['create-team']);
+  }
 }

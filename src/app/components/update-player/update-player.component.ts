@@ -14,10 +14,11 @@ export class UpdatePlayerComponent implements OnInit {
 
   id!: number;
   player: PlayerDto = new PlayerDto();
-  teamId!: Number;
+  teamId!: number;
   newTeam: TeamDto = new TeamDto();
   teamList: TeamDto[] = [];
-  transferAmount: number = 0;
+  transferAmount: Number = 0;
+  public selectedTeam: TeamDto = new TeamDto();
 
 
   constructor(private playerService: PlayerService,
@@ -38,6 +39,9 @@ export class UpdatePlayerComponent implements OnInit {
   }
 
   savePlayer(){
+    this.teamService.getTeamById(this.teamId).subscribe(data => {
+      this.newTeam = data;
+    })
     this.player.teamId = this.newTeam.id;
     this.playerService.updatePlayer(this.player.id, this.player).subscribe(data=> {
       console.log(data);
@@ -45,6 +49,7 @@ export class UpdatePlayerComponent implements OnInit {
     },
     error=>console.log(error));
   }
+
   goToPlayersList() {
     this.router.navigate(['/players']);
   }

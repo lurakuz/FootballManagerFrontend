@@ -14,6 +14,7 @@ export class CreatePlayerComponent implements OnInit {
 
   player: PlayerDto = new PlayerDto();
   teamList: TeamDto[] = [];
+  selectedTeam!: TeamDto;
 
   constructor(private playerService: PlayerService,
     private teamService: TeamService,
@@ -38,6 +39,7 @@ export class CreatePlayerComponent implements OnInit {
   }
 
   onSubmit(){
+    this.player.teamId = this.selectedTeam.id
     console.log(this.player);
     this.savePlayer();
   }
