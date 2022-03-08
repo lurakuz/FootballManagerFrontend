@@ -29,9 +29,10 @@
 
         <div class="form-group">
             <label>Team</label>
-            <select class="form-control" id = "Team" name = "Team" [(ngModel)] = "teamId">
+            <select class="form-control" id = "Team" name = "Team" [(ngModel)] = "teamId" >
                 <option [ngValue]="team" *ngFor="let team of teamList" [value] = team.id>{{team.teamName}}</option>
             </select>
+            <div>{{teamId}}</div>
         </div>
         <button class="btn btn-success" style="margin-top: 10px;" type="submit">Submit</button>
     </form>
