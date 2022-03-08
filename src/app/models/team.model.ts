@@ -4,6 +4,6 @@ export class TeamDto {
     country!: string;
     city!: string;
     accountAmount!: DoubleRange;
-    transferCommission!: string;
+    transferCommission!: number;
     playerIds! : number[];
 }

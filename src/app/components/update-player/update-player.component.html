@@ -23,22 +23,16 @@
 
         <div class="form-group">
             <label>Career Start Date</label>
-            <input type="text" class="form-control" id = "age"
-                [(ngModel)] = "player.careerStartDate" name = "age">
+            <input type="text" class="form-control" id = "careerStartDate"
+                [(ngModel)] = "player.careerStartDate" name = "careerStartDate">
         </div>
 
         <div class="form-group">
-            <label>Transfer player to new Team</label>
-            <select class="form-control" id = "newTeam" [(ngModel)] = "newTeam" name = "newTeam" (change)="changeTransfer()">
-                <option value="">Select New Team</option>
-                <option [ngValue]="team" *ngFor="let team of teamList">{{team.teamName}}</option>
+            <label>Team</label>
+            <select class="form-control" id = "Team" name = "Team" [(ngModel)] = "teamId">
+                <option [ngValue]="team" *ngFor="let team of teamList" [value] = team.id>{{team.teamName}}</option>
             </select>
         </div>
-
-        <div class="form-group" *ngIf="transferAmount>0">
-            <label>TransferAmount: {{transferAmount}}$</label>
-        </div>
-    
         <button class="btn btn-success" style="margin-top: 10px;" type="submit">Submit</button>
     </form>
 </div>

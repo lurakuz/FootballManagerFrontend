@@ -1,0 +1,33 @@
+<app-nav-bar></app-nav-bar>
+<div class='list-container container'>
+    <div style="text-align: center;margin: 20px;"><h3>Transfer player</h3></div>
+    <app-alert-modal [error]="error" *ngIf="error"></app-alert-modal>
+    <div>
+        <div>
+            <label> <b>First Name: </b></label> {{player.firstName}}
+        </div>
+        <div>
+            <label> <b>Last Name: </b></label> {{player.lastName}}
+        </div>
+        <div>
+            <label> <b>Age: </b></label> {{player.age}}
+        </div>
+        <div>
+            <label> <b>Career Start Date: </b></label> {{player.careerStartDate}}
+        </div>
+        <div>
+            <label style="display: flex;"> <b>Current Team: </b><a [routerLink]="['../../team-details/', player.teamId]" routerLinkActive="active"
+                 style="margin-left: 10px" >{{teamName}}</a> </label>
+        </div>
+        <div>
+            <label> <b>Transfer to: </b></label>
+            <select class="team-option" id = "newTeam" [(ngModel)] = "newTeam" name = "newTeam" (change)="changeTransfer()">
+                <option [ngValue]="team" *ngFor="let team of filterTeam(teamList)" >{{team.teamName}}</option>
+            </select>
+        </div>
+        <div class="form-group" *ngIf="transferAmount!=='0'">
+            <label><b>TransferAmount: </b>{{transferAmount}}$</label>
+        </div>
+        <button class="btn btn-success" style="margin-top: 10px;" type="submit">Submit</button>
+    </div>
+</div>

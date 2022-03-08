@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PlayerDto } from 'src/app/models/player.model';
 import { TeamDto } from 'src/app/models/team.model';
@@ -6,35 +6,47 @@ import { PlayerService } from 'src/app/services/player.service';
 import { TeamService } from 'src/app/services/team.service';
 
 @Component({
-  selector: 'app-update-player',
-  templateUrl: './update-player.component.html',
-  styleUrls: ['./update-player.component.css']
+  selector: 'app-transfer-player',
+  templateUrl: './transfer-player.component.html',
+  styleUrls: ['./transfer-player.component.css']
 })
-export class UpdatePlayerComponent implements OnInit {
+export class TransferPlayerComponent implements OnInit {
 
-  id!: number;
-  player: PlayerDto = new PlayerDto();
-  teamId!: Number;
+
+  @Input() error: any;
+  id!:number;
+  player!: PlayerDto;
+  teamName!: String;
+  transferAmount: String = '0';
   newTeam: TeamDto = new TeamDto();
   teamList: TeamDto[] = [];
-  transferAmount: number = 0;
-
-
-  constructor(private playerService: PlayerService,
+  constructor(private route: ActivatedRoute, 
+    private playerService: PlayerService, 
     private teamService: TeamService,
-    private route: ActivatedRoute,
     private router: Router) { }
 
-
   ngOnInit(): void {
-    this.id = this.route.snapshot.params['id']
+    this.id = this.route.snapshot.params['id'];
+
     this.playerService.getPlayerById(this.id).subscribe(data => {
       this.player = data;
-      this.teamId = data.teamId
       this.teamService.getTeamsList().subscribe(data => {
+        this.teamService.getTeamById(this.player.teamId).subscribe(data => this.teamName = data.teamName)
         this.teamList = data;
       })
     }, error => console.log(error));
+  }
+  
+  changeTransfer(){
+    let now = new Date();
+    let playerCareerStartDate = new Date(this.player.careerStartDate);
+    var months = (now.getFullYear() - playerCareerStartDate.getFullYear()) * 12;
+    months -= playerCareerStartDate.getMonth();
+    389655
+    months += now.getMonth();
+    var transferPrice = months * 100000 / this.player.age;
+    var commission = transferPrice / this.newTeam.transferCommission;
+    this.transferAmount = (transferPrice + commission).toFixed(2);
   }
 
   savePlayer(){
@@ -45,6 +57,7 @@ export class UpdatePlayerComponent implements OnInit {
     },
     error=>console.log(error));
   }
+
   goToPlayersList() {
     this.router.navigate(['/players']);
   }

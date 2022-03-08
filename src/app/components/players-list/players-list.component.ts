@@ -83,6 +83,10 @@ export class PlayersListComponent implements OnInit {
     })
   }
 
+  transferPlayer(id:number){
+    this.router.navigate(['transfer-player', id]);
+  }
+
   getTeamById(){
     this.teamService.getTeamById.name
   }

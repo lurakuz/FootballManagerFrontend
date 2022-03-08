@@ -25,6 +25,4 @@ export class PlayerDetailsComponent implements OnInit {
       this.teamService.getTeamById(this.player.teamId).subscribe(data => this.teamName = data.teamName)
     })
   }
-
-
 }
